@@ -1,0 +1,28 @@
+KVM (Kernel-based Virtual Machine) is a portion occupant virtualization framework for Linux on x86 equipment. KVM was the principal hypervisor to wind up some portion of the local Linux bit (2.6.20). KVM has bolster for symmetrical mUltiprocessing (SMP) hosts (and visitors) and backings endeavor level highlights, for example, live movement (to permit visitor working frameworks to relocate between physical servers) [10]. Since the standard Linux bit is the hypervisor, it profits by the progressions to the primary line variant of Linux (memory support, scheduler, et cetera). Improvements to these Linux parts advantage both the hypervisor and the Linux visitor OSs. KVM is actualized as a piece module, permitting Linux to end up plainly a hypervisor basically by stacking a module. KVM gives full virtualization on equipment stages that give virtualization guidelines bolster (Inter VT or AMDV). KVM has two noteworthy segments; the first is the KVM loadable module that, when stacked in the Linux piece, gives administration of the virtualization equipment, uncovering its abilities through the/dev document framework. The second part gives PC stage imitating, which is given by an altered rendition of the QEMU emulator. QEMU executes as a client space process, planning with the part for visitor working framework demands. At the point when a visitor OS is booted on KVM, it turns into a procedure of the host working framework and in this manner booked like any different process. Yet, dissimilar to different process in Linux, the visitor OS is distinguished by the hypervisor as being in the visitor mode (free of the part and client modes). The KVM module trades a gadget called/dev/kvm which empowers the visitor method of the bit. With/dev/kvm, a VM has its own particular memory address space isolate from that of the piece or whatever other VM that is running. Gadgets in the gadget tree (/dev) are normal to all client space process, however/dev/kvm is distinctive in that every procedure that opens it sees an alternate outline, it underpins detachment of the VMs [11]. At long last, 110 demands are virtualized through a gently adjusted QEMU process that executes on the hypervisor. A duplicate of which executes with every visitor OS process. A perspective of the KVM parts design is appeared in Fig. 1. Other virtualization stages have been contending to get into Linux piece mainline for quite a while, (for example, UML and Xen), but since KVM required so few changes and was capable to change a standard part into a hypervisor, it's beautiful clear why it was picked.
+
+OpenVZ is a operating system-level virtualization technology for the Linux kernel.  It consists of a modified kernel that adds virtualization and isolation of various subsystems, resource management and checkpointing. Open VZ allows a physical server to run multiple isolated operating system CTs. 
+Each CT is an isolated program execution environment that acts like a separate physical server. A CT has its own set of process starting from init, file system, users, networking interfaces with particular IP addresses, routing tables, etc. 
+Multiple CTs can co-exist on a single physical server, each one can operate different Linux distributions, but all CTs run under the same kernel , which results in excellent density, performance and manageability. Virtualization and isolation enable many CTs within a single kernel. 
+The resource management subsystem limits (and in some cases guarantees) resources, such as CPU, RAM, and disk space on a per-CTs basis. All those resources need to be controlled in a way that lets many CTs co-exist on a single system and not impact each other. 
+The checkpointing feature allows stop a CT, saving its complete state to a disk file, with the ability to restore that state later, even in another physical host. 
+
+The Open VZ resource management subsystem consists of three components : 
+• Two-level disk quota - Disk quotas can be set per-CT (first level) and inside CT, via standard Unix quota tools configured by the CT administrator. 
+• Fair CPU scheduler - The Open VZ CPU scheduler is also two levels. On the first level it decides which CT to give the time slice to, taking into account the CT's CPU priority and limit settings. On the second level, the standard linux scheduler decides which process in the given CT to give the time slice to. 
+• User Beancounters - Is a set of per-CT counters, limits and guarantees. There is a set of about 20 parameters that cover all aspects of CT operation, so no single CT can abuse any resource that is limited for the whole computer and thus do harm to other CTs. The resources accounted and controlled are mainly memory and various in-kernel objects such as IPC shared memory segments, network buffers, etc.
+Linux Containers (LXC) are light weight Kernel regulation usage upheld on few flavors or Linux like Ubuntu and Oracle Linux.
+
+Key Characteristics of the Linux Containers are
+• Process Each compartment is doled out a novel PID. Each
+compartment can run a solitary procedure.
+• Resource Isolation Uses cgroups and namespaces to
+detach assets.
+• Network Isolation Containers get a private IP address
+also, veth interface associating with a linux connect on the
+host.
+• File System Isolation Each compartment gets a private record
+framework by utilizing chroot.
+
+Linux Containers utilize Apparmor Security profile for solidifying
+of the host. It additionally utilizes cgroups to restrict device limit for the Containers. 
+LXC utilizes a different record framework for each compartment which can be upheld by a LVM.

@@ -1,0 +1,16 @@
+Ch.1
+Q1.cloud computing vs client server
+Five Essential Characteristics slide chapter1 slide
+Nist defination
+
+Q2. Models of Cloud Computing - Four development models chapter1
+
+Ch2Virtualization Techniques
+what is virtualization
+Vistualization types
+Purpose
+abstraction replication isolation
+
+ISA Based ABI Based API based
+Instruction set Arch
+HAL

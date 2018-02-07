@@ -1,0 +1,55 @@
+Dynamic Execution in OpenSimplex Auto-tuning
+Author: VinayKhedekar
+Date: November 23, 2017
+
+Requirements
+------------
+The Profiler has been used (see profile.readme) to generate the job profiles
+
+
+Setup
+-----
+Specify the global optimization options in bin/config.sh
+
+
+MapReduce Job Optimization on a Live Cluster
+--------------------------------------------
+Use the bin/optimize script to perform job optimization:
+
+Usage:
+  ./bin/optimize {recommend|run} job_id hadoop jar jarFile [mainClass] [genericOptions] args...
+
+  recommend   = display the recommended configuration settings
+  run         = run the job with automatically selected settings
+  job_id      = the job id of the profiled job
+
+Examples:
+  ./bin/optimize recommend job_201008240839_0000 hadoop jar hadoop-opensimplex-examples.jar wordcount input output
+
+  ./bin/optimize run job_201008240839_0000 hadoop jar hadoop-opensimplex-examples.jar wordcount input output
+
+
+MapReduce Job Optimization on a hypothetical cluster
+----------------------------------------------------
+Use the bin/optimize script to perform job optimization:
+
+Usage:
+  ./bin/optimize profile_file input_file cluster_file [-c conf_file] [-o output_file]
+
+  profile_file = the job profile file (XML file)
+  input_file   = the input specifications file (XML file)
+  cluster_file = the cluster specifications file (XML file)
+  conf_file    = optional job configuration file (XML file)
+  output_file  = optional file to write the output to
+
+Example:
+  ./bin/optimize profile-wordcount.xml virtual-input.xml virtual-cluster.xml -c myconf.xml
+
+Usage:
+      hadoop jar opensimplex-*-profiler.jar -mode adjust -results <results_dir> \
+         -job1 <job_id_1> -job2 <job_id_2>
+
+   <results_dir> is the output directory specified in PROFILER_OUTPUT_DIR
+   <job_id_1> is the job id of the job profiled without compression
+   <job_id_2> is the job id of the job profiled with compression
+

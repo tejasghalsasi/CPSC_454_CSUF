@@ -1,0 +1,51 @@
+Dynamic Execution in OpenSimplex Auto-tuning
+Author: VinayKhedekar
+Date: November 23, 2017
+
+
+Installation
+------------
+In order to execute MapReduce jobs in a cluster via Opensimplex you must
+first set the global profiling parameters in bin/config.sh
+
+The required parameters are:
+   - SLAVES_BTRACE_DIR: The BTrace installation directory at the slave nodes
+   - CLUSTER_NAME: A descriptive name for the cluster
+   - PROFILER_OUTPUT_DIR: The local directory to place the output files
+
+
+Execute a MapReduce job
+-----------------------
+There are two ways to execute a MapReduce job in the Hadoop cluster.
+
+Method A: Using the bin/execute script
+   Usage:
+      ./bin/execute hadoop jar jarFile [mainClass] [genericOptions] args...
+   Example:
+      ./bin/execute hadoop jar hadoop-opensimplex-examples.jar wordcount input output
+
+This method will submit the MapReduce job to the cluster and collect its
+execution files upon completion.
+
+Note that the job execution will NOT incur any performance overhead when executed
+using the bin/execute script.
+
+Method B: Using the traditional ${HADOOP_HOME}/bin/hadoop script to execute
+the MapReduce job and then bin/gather_results.sh to gather the execution files.
+
+1. Execute the MapReduce job
+   Usage:
+      ${HADOOP_HOME}/bin/hadoop jar jarFile [mainClass] [genericOptions] args...
+   Example:
+      ${HADOOP_HOME}/bin/hadoop jar hadoop-opensimplex-examples.jar wordcount input output
+   
+2. Gather the execution files after the MapReduce job completes execution.
+   Usage 1: Single job id:
+      ./bin/gather_results.sh job_id
+   Usage 2: Range of job ids:
+      ./bin/gather_results.sh first_job_id last_job_id
+   Examples:
+      ./gather_results.sh job_201001052153_0021
+      ./gather_results.sh job_201001052153_0021 job_201001052153_0025
+
+

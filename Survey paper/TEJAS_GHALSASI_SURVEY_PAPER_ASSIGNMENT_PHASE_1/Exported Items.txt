@@ -1,0 +1,1 @@
+{{Cite| title = System Performance Evaluation of Para Virtualization, Container Virtualization, and Full Virtualization Using Xen, OpenVZ, and XenServer.pdf}}
